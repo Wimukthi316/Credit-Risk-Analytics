@@ -27,7 +27,7 @@ This mirrors a real-world credit decisioning engine that a bank's automated unde
 
 ---
 
-## Project Showcase
+## 🖼️ Project Showcase
 
 | ✅ Low Risk — Approve | ❌ High Risk — Reject |
 |:---:|:---:|

@@ -31,7 +31,7 @@ This mirrors a real-world credit decisioning engine that a bank's automated unde
 
 | ✅ Low Risk — Approve | ❌ High Risk — Reject |
 |:---:|:---:|
-| ![Approve Screenshot](assets/bad_customer.jpeg) | ![Reject Screenshot](assets/good_customer.jpeg) |
+| ![Approve Screenshot](assets/good_customer.jpeg) | ![Reject Screenshot](assets/bad_customer.jpeg) |
 
 ---
 

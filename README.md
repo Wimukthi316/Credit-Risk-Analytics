@@ -35,11 +35,18 @@ This mirrors a real-world credit decisioning engine that a bank's automated unde
 
 ---
 
-## Live Demo
+## 🚀 Live Demo
 
-> **[→ Open the live app on Streamlit Cloud](https://credit-risk-analytics-whgaxsl4zbcsf9vfmdjpks.streamlit.app/)**
+<div align="center">
 
-On first load, the app trains the model directly from the raw dataset (~30 seconds). All subsequent interactions are cached and instant.
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://credit-risk-analytics-whgaxsl4zbcsf9vfmdjpks.streamlit.app/)
+
+**[→ https://credit-risk-analytics-whgaxsl4zbcsf9vfmdjpks.streamlit.app/](https://credit-risk-analytics-whgaxsl4zbcsf9vfmdjpks.streamlit.app/)**
+
+> ⏱ On first load, the model trains automatically from the raw dataset (~30 seconds).
+> All subsequent interactions are cached and instant.
+
+</div>
 
 ---
 

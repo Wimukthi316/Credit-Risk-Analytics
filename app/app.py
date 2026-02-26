@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 import pickle
 import os
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
 
 # ─────────────────────────────────────────────
 #  Page config
@@ -98,23 +100,56 @@ st.markdown(
 )
 
 # ─────────────────────────────────────────────
-#  Load model
+#  Paths
 # ─────────────────────────────────────────────
-MODEL_PATH = os.path.join(os.path.dirname(__file__), "..", "models", "credit_risk_model.pkl")
+BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR   = os.path.join(BASE_DIR, "..")
+MODEL_PATH = os.path.join(ROOT_DIR, "models", "credit_risk_model.pkl")
+DATA_PATH  = os.path.join(ROOT_DIR, "data", "raw", "credit_risk_dataset.csv")
 
-@st.cache_resource(show_spinner="Loading model…")
-def load_model(path):
-    with open(path, "rb") as f:
+# ─────────────────────────────────────────────
+#  Train & save model (runs only if pkl missing)
+# ─────────────────────────────────────────────
+def train_and_save_model():
+    """Reproduce the exact training pipeline from the notebook and pickle the result."""
+    df = pd.read_csv(DATA_PATH)
+
+    # --- Cleaning ---
+    df = df[df['person_age'] <= 100]
+    df = df[(df['person_emp_length'] <= 100) | (df['person_emp_length'].isna())]
+    df['person_emp_length'] = df['person_emp_length'].fillna(df['person_emp_length'].median())
+    df['loan_int_rate']     = df['loan_int_rate'].fillna(df['loan_int_rate'].median())
+
+    # --- Encoding ---
+    df['cb_person_default_on_file'] = df['cb_person_default_on_file'].map({'Y': 1, 'N': 0})
+    grade_mapping = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6}
+    df['loan_grade'] = df['loan_grade'].map(grade_mapping)
+    df = pd.get_dummies(df, columns=['person_home_ownership', 'loan_intent'], drop_first=True)
+
+    X = df.drop('loan_status', axis=1)
+    y = df['loan_status']
+    X_train, _, y_train, _ = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    rf = RandomForestClassifier(n_estimators=100, random_state=42)
+    rf.fit(X_train, y_train)
+
+    os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
+    with open(MODEL_PATH, "wb") as f:
+        pickle.dump(rf, f)
+
+    return rf
+
+# ─────────────────────────────────────────────
+#  Load model (train on-the-fly if pkl missing)
+# ─────────────────────────────────────────────
+@st.cache_resource(show_spinner="Setting up model — this takes ~30 seconds on first run…")
+def load_model():
+    if not os.path.exists(MODEL_PATH):
+        return train_and_save_model()
+    with open(MODEL_PATH, "rb") as f:
         return pickle.load(f)
 
-try:
-    model = load_model(MODEL_PATH)
-except FileNotFoundError:
-    st.error(
-        "⚠️ Model file not found at `models/credit_risk_model.pkl`. "
-        "Please train the model first (run the notebook) and save it there."
-    )
-    st.stop()
+model = load_model()
 
 # ─────────────────────────────────────────────
 #  Header

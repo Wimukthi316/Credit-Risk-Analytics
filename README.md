@@ -104,6 +104,22 @@ credit-risk-analytics/
 
 ---
 
+## 🏗️ System Architecture & Data Pipeline
+
+```mermaid
+graph TD
+    A[Raw Data: credit_risk_dataset.csv] -->|Pandas| B(Data Cleaning & EDA)
+    B --> C{Feature Engineering}
+    C -->|One-Hot & Ordinal Encoding| D[Training: Random Forest Classifier]
+    D -->|joblib| E[(Model Saved: .pkl)]
+    E --> F[Streamlit Web App Backend]
+    F -->|User Inputs| G{Prediction Engine}
+    G -->|Probability of Default| H[Expected Loss Calculation]
+    H --> I((Final UI Decision: Approve/Review/Reject))
+```
+
+---
+
 ## 🧠 Model & Feature Engineering
 
 The pipeline exactly mirrors the notebook experiments:

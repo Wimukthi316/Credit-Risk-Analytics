@@ -177,7 +177,7 @@ with st.sidebar:
 
     age = st.number_input("Age", min_value=18, max_value=100, value=30, step=1)
     income = st.number_input(
-        "Annual Income (₹)", min_value=1000, max_value=10_000_000,
+        "Annual Income ($)", min_value=1000, max_value=10_000_000,
         value=50_000, step=1000, format="%d",
     )
     emp_length = st.number_input(
@@ -194,7 +194,7 @@ with st.sidebar:
     st.markdown('<p class="section-label">💳 Loan Details</p>', unsafe_allow_html=True)
 
     loan_amount = st.number_input(
-        "Loan Amount (₹)", min_value=500, max_value=500_000,
+        "Loan Amount ($)", min_value=500, max_value=500_000,
         value=10_000, step=500, format="%d",
     )
     interest_rate = st.number_input(
@@ -406,7 +406,7 @@ if predict_clicked:
         st.markdown(
             f"""<div class="metric-card">
                 <div class="label">Expected Financial Loss</div>
-                <div class="value" style="color:#1e40af;">₹{expected_loss:,.0f}</div>
+                <div class="value" style="color:#1e40af;">${expected_loss:,.0f}</div>
             </div>""",
             unsafe_allow_html=True,
         )
@@ -414,7 +414,7 @@ if predict_clicked:
         st.markdown(
             f"""<div class="metric-card">
                 <div class="label">Loan Amount</div>
-                <div class="value" style="color:#374151;">₹{loan_amount:,}</div>
+                <div class="value" style="color:#374151;">${loan_amount:,}</div>
             </div>""",
             unsafe_allow_html=True,
         )
@@ -474,7 +474,7 @@ if predict_clicked:
                         "Field": ["Age", "Annual Income", "Employment Length", "Home Ownership"],
                         "Value": [
                             f"{age} yrs",
-                            f"₹{income:,}",
+                            f"${income:,}",
                             f"{emp_length} yrs",
                             home_ownership,
                         ],
@@ -492,7 +492,7 @@ if predict_clicked:
                             "Loan Grade", "Credit History", "Prior Default",
                         ],
                         "Value": [
-                            f"₹{loan_amount:,}",
+                            f"${loan_amount:,}",
                             f"{interest_rate:.1f}%",
                             loan_intent.title(),
                             loan_grade,

@@ -56,7 +56,7 @@ This mirrors a real-world credit decisioning engine that a bank's automated unde
 |---|---|
 | **End-to-End ML Pipeline** | Data cleaning → feature engineering → ordinal + one-hot encoding → Random Forest training, all reproduced automatically at runtime |
 | **Probability of Default** | Calibrated class probability output from `predict_proba`, not just a binary yes/no prediction |
-| **Expected Financial Loss** | Monetises risk: `P(default) × Loan Amount`, giving loan officers a concrete ₹ figure at stake |
+| **Expected Financial Loss** | Monetises risk: `P(default) × Loan Amount`, giving loan officers a concrete $ figure at stake |
 | **Three-Tier Decision Engine** | `✅ APPROVE` (PD < 30%) · `⚠️ REVIEW` (30–60%) · `❌ REJECT` (> 60%) with written rationale per decision |
 | **Interactive Risk Meter** | Colour-coded progress bar (green → amber → red) that moves with the prediction |
 | **Professional UI** | Custom CSS theming, KPI cards, responsive two-column layout, collapsible application summary |
@@ -149,7 +149,7 @@ loan_intent_EDUCATION/HOMEIMPROVEMENT/MEDICAL/PERSONAL/VENTURE
 
 **1. Clone the repository**
 ```bash
-git clone https://github.com/your-username/credit-risk-analytics.git
+git clone https://github.com/Wimukthi316/credit-risk-analytics.git
 cd credit-risk-analytics
 ```
 

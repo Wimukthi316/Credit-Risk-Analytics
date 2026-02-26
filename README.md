@@ -27,15 +27,15 @@ This mirrors a real-world credit decisioning engine that a bank's automated unde
 
 ---
 
-## � Project Showcase
+## Project Showcase
 
 | ✅ Low Risk — Approve | ❌ High Risk — Reject |
 |:---:|:---:|
-| ![Approve Screenshot](assets/approve.png) | ![Reject Screenshot](assets/reject.png) |
+| ![Approve Screenshot](assets/bad_customer.jpeg) | ![Reject Screenshot](assets/good_customer.jpeg) |
 
 ---
 
-## �🚀 Live Demo
+## Live Demo
 
 > **[→ Open the live app on Streamlit Cloud](https://credit-risk-analytics-whgaxsl4zbcsf9vfmdjpks.streamlit.app/)**
 

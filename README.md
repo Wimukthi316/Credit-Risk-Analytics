@@ -172,7 +172,3 @@ Open [http://localhost:8501](http://localhost:8501) in your browser. The model w
 This project is licensed under the [MIT License](LICENSE).
 
 ---
-
-<div align="center">
-Built with ❤️ using Python & Streamlit
-</div>
